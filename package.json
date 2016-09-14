@@ -1,0 +1,25 @@
+{
+  "name": "mapbox-gl-raster",
+  "version": "1.0.0",
+  "description": "A plugin to add raster layer for mapbox-gl-js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "browser-sync start --server --files \"**/*.html,**/*.css,**/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandonxiang/mapbox-gl-raster.git"
+  },
+  "keywords": [
+    "mapbox-gl",
+    "raster",
+    "tile"
+  ],
+  "author": "brandonxiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brandonxiang/mapbox-gl-raster/issues"
+  },
+  "homepage": "https://github.com/brandonxiang/mapbox-gl-raster#readme"
+}
