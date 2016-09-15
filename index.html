@@ -5,7 +5,9 @@
     <title></title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js'></script>
+    <script src='./node_modules/mapbox-gl-layers/dist/mapbox-gl-layers.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css' rel='stylesheet' />
+     <link href='./node_modules/mapbox-gl-layers/dist/mapbox-gl-layers.css' rel='stylesheet' />
 
     <style>
         body { margin:0; padding:0; }
@@ -32,8 +34,12 @@ var simple = {
         "sources": {
             "raster-tiles": {
                 "type": "raster",
-                "url": "http://localhost:3000/tilejson.json",
+                "url": "tilejson.json",
                 "tileSize": 256
+            },
+            "contours":{
+                type: 'vector',
+                url: 'mapbox://mapbox.mapbox-terrain-v2'
             }
         },
         "layers": [{
@@ -42,6 +48,20 @@ var simple = {
             "source": "raster-tiles",
             "minzoom": 0,
             "maxzoom": 18
+            },{
+            'id': 'contour-layer',
+            'type': 'line',
+            'source': 'contours',
+            'source-layer': 'contour',
+            'layout': {
+                'visibility': 'visible',
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            'paint': {
+                'line-color': '#877b59',
+                'line-width': 1
+            }
         }]
     };
 
@@ -54,6 +74,18 @@ var map = new mapboxgl.Map({
 });
 
 map.addControl(new mapboxgl.Navigation());
+
+map.on('style.load', function () {
+new MapboxGLLayers({
+    position: 'top-left',
+    layers: {
+      'contours': "contour-layer",
+      'basemap': "simple-tiles"
+    },
+    onChange: function (selected) { console.log('Selected:', selected); }
+  }).addTo(map);
+})
+
 </script>
 
 </body>
