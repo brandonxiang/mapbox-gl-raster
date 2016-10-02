@@ -1,2 +1,3 @@
 # mapbox-gl-raster
-A plugin to add raster layer for mapbox-gl-js
+
+A demo how to add raster tilelayer into mapbox-gl-js.
